@@ -1,4 +1,4 @@
 !!net.xrrocha.service.email.MailgunEmailService
 from: postmaster@sandbox025b86cabd724cdda4c651325d5aca00.mailgun.org
 server: "https://api.mailgun.net/v3/sandbox025b86cabd724cdda4c651325d5aca00.mailgun.org/messages"
-key: key-ac06b4789275c2c4f31138b21f202747
+key: key-inconnu
