@@ -1,0 +1,8 @@
+registryDirectory: !file [ target/servlet-scripter ]
+
+transformers:
+  babel: &babel !babelTransformer [ ]
+  ecmascript7: *babel
+
+configurers:
+  scala: !scalaConfigurer [ ]

@@ -1,0 +1,47 @@
+id: scriptTest
+
+language: ecmascript7
+
+description: |
+  Send silly email message
+
+classLoaderCreator: !classLoaderCreator
+  opener: !urlOpener [ ]
+  jarUrls:
+    - filePath: simple-string-normalizer.jar
+      urlLocation: file:src/test/resources/classLoader/string-normalizer.jar
+  resourceUrls:
+    - filePath: a/b/c/text-resource.txt
+      urlLocation: file:src/test/resources/classLoader/resource.txt
+    - filePath: yamltag.yaml
+      urlLocation: file:src/test/resources/classLoader/yamltag.yaml
+
+globalVariables:
+  text: |
+    The reasonable man adapts himself to the world.
+    The unreasonable one persists in trying to adapt the world to himself.
+    Therefore all progress depends on the unreasonable man.
+
+script: |
+  // Normalize and print a silly message
+  const io = Packages.java.io;
+  const stream = Packages.java.util.stream;
+  const StringNormalizer = Java.type('StringNormalizer');
+
+  const loadResource = (filename) => {
+    const inputStream = java.lang.Thread
+      .currentThread()
+      .getContextClassLoader()
+      .getResourceAsStream(filename);
+    const reader = new io.BufferedReader(new io.InputStreamReader(inputStream));
+    return reader.lines().collect(stream.Collectors.joining("\n"));
+  };
+
+  const content = loadResource('a/b/c/text-resource.txt');
+  print(`Unnormalized content: \n${content}`);
+
+  const normalizer = new StringNormalizer();
+  const normalizedContent = normalizer.normalizeString(content);
+  print(`Normalized text: ${normalizedContent}`);
+
+  normalizedContent;

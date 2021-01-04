@@ -1,0 +1,28 @@
+id: emailer1
+
+language: javascript
+
+usage: REUSABLE_SERVICE
+
+description: |
+  The `email` service exposes a `send(to, subject, text)` function to send email
+  messages from a fixed email address to any recipient. This service is built on
+  top of [Mailgun](https://www.mailgun.com/).
+
+#jars:
+#  - https://jars.xrrocha.net/emailer/emailer-1.0.0.jar
+
+services: [ ]
+
+globalVariables:
+  emailSender: !emailer
+    from: postmaster@sandbox025b86cabd724cdda4c651325d5aca00.mailgun.org
+    server: "https://api.mailgun.net/v3/sandbox025b86cabd724cdda4c651325d5aca00.mailgun.org/messages"
+    key: key-ac06b4789275c2c4f31138b21f202747
+
+script: |
+  ({
+    send: function(to, subject, text) {
+            return emailSender.send(to, subject, text);
+          }
+  })

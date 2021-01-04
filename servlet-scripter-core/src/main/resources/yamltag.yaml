@@ -1,0 +1,4 @@
+babelTransformer: net.xrrocha.scripter.transformer.BabelEcmascript7Transformer
+script: net.xrrocha.scripter.Script
+scripter: net.xrrocha.scripter.Scripter
+scalaConfigurer: net.xrrocha.scripter.configurer.ScalaScriptEngineConfigurer

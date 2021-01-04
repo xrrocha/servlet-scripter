@@ -1,0 +1,22 @@
+--===1511414221028===
+Content-Disposition: form-data; name="from"
+Content-Type: text/plain; charset=UTF-8
+
+postmaster@sandbox025b86cabd724cdda4c651325d5aca00.mailgun.org
+--===1511414221028===
+Content-Disposition: form-data; name="to"
+Content-Type: text/plain; charset=UTF-8
+
+noone@xrrocha.net
+--===1511414221028===
+Content-Disposition: form-data; name="subject"
+Content-Type: text/plain; charset=UTF-8
+
+Hey there!
+--===1511414221028===
+Content-Disposition: form-data; name="text"
+Content-Type: text/plain; charset=UTF-8
+
+What's up?
+
+--===1511414221028===--

@@ -1,0 +1,11 @@
+classLoaderCreator: net.xrrocha.scripter.commons.classloader.ParentLastClassLoaderCreator
+directory: java.io.File
+file: java.io.File
+fileRegistry: net.xrrocha.scripter.commons.registry.FileBasedRegistry
+inputFileSource: net.xrrocha.scripter.commons.source.io.FileInputStreamSource
+fileCreator: net.xrrocha.scripter.commons.io.InputStreamFileCreator
+mapRegistry: net.xrrocha.scripter.commons.registry.MapBasedRegistry
+outputFileSource: net.xrrocha.scripter.commons.source.io.FileOutputStreamSource
+resourceOpener: net.xrrocha.scripter.commons.io.ResourceInputStreamOpener
+s3Opener: net.xrrocha.scripter.commons.io.S3InputStreamOpener
+urlOpener: net.xrrocha.scripter.commons.io.UrlInputStreamOpener

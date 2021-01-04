@@ -1,0 +1,44 @@
+id: logCollector
+
+language: ecmascript7
+
+description: |
+  Collect spring-boot application logs from stage/prod
+
+services:
+  - emailer
+  - host
+
+globalVariables:
+  userName: ec2-user
+  pemFile: ec2key1.pem
+  appName: profile-service
+  destinationHostAddress: 1.2.3.100
+  applicationHosts: [ 1.2.3.4, 1.2.3.5, 1.2.3.6 ]
+  emailRecipient: noone@xrrocha.net
+
+script: |
+
+  const destinationHost = host.newHost(destinationHostAddress, userName, pemFile)
+
+  const hosts = applicationHosts.map((ip) => host.newHost(ip, userName, pemFile))
+
+  hosts.parallelStream().forEach((host) => {
+
+  	const app = host.apps(appName)
+
+         app.changeLoggingLevel("net.xrrocha.profiles", "debug")
+
+  	host.schedule(1, Hour, () => {
+
+   		    const zipFilename = `/tmp/${app.name}-${host.name}-logs.zip`
+
+  		app.collectLogs(zipFilename)
+
+  		host.scp(destinationHost, zipFilename)
+
+             app.changeLoggingLevel("net.xrrocha.profiles", "info")
+
+  		emailer.send(emailRecipient, `Logs collected for ${host.name}`)
+  	})
+  })
